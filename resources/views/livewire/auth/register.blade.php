@@ -7,33 +7,38 @@
     <p class="text-white-50 mb-4">Please enter your login and password!</p>
 
     <div class="form-outline form-white mb-4">
-        <input type="text" id="typeName" class="form-control form-control-lg" />
+        <input wire:model="first_name" type="text" id="typeName" class="form-control form-control-lg" />
         <label class="form-label" for="typeName">Name</label>
+        <x-error field="first_name" />
     </div>
 
     <div class="form-outline form-white mb-4">
-        <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+        <input wire:model="email" type="email" id="typeEmailX" class="form-control form-control-lg" />
         <label class="form-label" for="typeEmailX">Email</label>
+        <x-error field="email" />
     </div>
 
     <div class="form-outline form-white mb-4">
-        <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+        <input wire:model="password" type="password" id="typePasswordX" class="form-control form-control-lg" />
         <label class="form-label" for="typePasswordX">Password</label>
+        <x-error field="password" />
     </div>
 
-    <p class="small mb-2 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+    <div class="form-outline form-white mb-4">
+        <input wire:model="password_confirmation" type="password" id="password_confirmation" class="form-control form-control-lg" />
+        <label class="form-label" for="password_confirmation">Confirm</label>
+    </div>
 
-    <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+    <button wire:click="register" class="btn btn-outline-light btn-lg px-5" type="button">Register</button>
     
     <hr class="my-4">
 
     <button class="btn btn-lg btn-block btn-primary" style="background-color: #395fdd;"
-        type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
-
+        type="submit"><i class="fab fa-google me-2"></i> Sign up with google</button>
     </div>
 
     <div>
-    <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+    <p class="mb-0">Have an account? <a href="{{route('login')}}" class="text-white-50 fw-bold">Sign In</a>
     </p>
     </div>
 

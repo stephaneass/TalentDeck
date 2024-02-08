@@ -18,5 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', LoginComponent::class)->name('admin.login');
-Route::get('/registration', RegisterComponent::class)->name('admin.register');
+Route::get('/login', LoginComponent::class)->name('login');
+Route::get('/registration', RegisterComponent::class)->name('register');

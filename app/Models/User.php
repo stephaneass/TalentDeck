@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -43,4 +44,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    static function addNew($data)
+    {
+        $user = self::create([
+            'first_name' => $data['first_name'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+        ]);
+
+        $user->generateSlug();
+
+        return $user;
+    }
+
+    function generateSlug()
+    {
+        $baseSlug = Str::slug($this->first_name);
+        $slug = $baseSlug;
+        $counter = 1;
+        
+        // Check if the generated slug already exists
+        while (User::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $counter++;
+        }
+        
+        // Set the slug attribute
+        $this->slug = $slug;
+        $this->save();
+    }
 }

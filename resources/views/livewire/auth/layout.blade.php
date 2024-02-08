@@ -27,7 +27,7 @@
     <!-- Icons Css -->
     <link href="{{asset('mdb/css/mdb.min.css')}}" rel="stylesheet" type="text/css" /> --}}
     
-    {{-- @livewireStyles --}}
+    @livewireStyles
 </head>
 
 <body class="bg-secondary">
@@ -49,7 +49,7 @@
     {{-- <script src="{{asset('admin/js/jquery.min.js')}}"></script> --}}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js" ></script>
     @stack('scripts')
-    {{-- @livewireScripts --}}
+    @livewireScripts
 </body>
 
 

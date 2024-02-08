@@ -14,4 +14,20 @@ class LoginComponent extends Component
         return view('livewire.auth.login')
         ->extends('livewire.auth.layout', ['title' => "Connexion"]);
     }
+
+    public function login()
+    {
+        $this->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        
+
+        if(Auth::attempt(array('email' => $this->email, 'password' => $this->password))){
+            dd("good");
+            
+        }else{
+            session()->flash('error', 'Email ou mot de passe invalide.');
+        }
+    }
 }

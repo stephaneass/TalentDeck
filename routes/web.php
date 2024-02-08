@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\LoginComponent;
+use App\Livewire\RegisterComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/login', LoginComponent::class)->name('admin.login');
+Route::get('/registration', RegisterComponent::class)->name('admin.register');

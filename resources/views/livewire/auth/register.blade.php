@@ -3,8 +3,13 @@
 
     <div class="md-2 mt-md-4 pb-5">
 
-    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+    <h2 class="fw-bold mb-2 text-uppercase">Registration</h2>
     <p class="text-white-50 mb-4">Please enter your login and password!</p>
+
+    <div class="form-outline form-white mb-4">
+        <input type="text" id="typeName" class="form-control form-control-lg" />
+        <label class="form-label" for="typeName">Name</label>
+    </div>
 
     <div class="form-outline form-white mb-4">
         <input type="email" id="typeEmailX" class="form-control form-control-lg" />

@@ -1,4 +1,4 @@
-@extends('auth.layout')
+@extends('auth.layout', ['title' => "Login"])
 @section('content')
     <div class="card-body p-5 text-center">
 
@@ -71,6 +71,9 @@
                 
                 if(data.success === true){
                     $('.alert_message').show().text(data.message);
+                    window.location.replace(
+                     '{{route("dashboard")}}'
+                    );
                 }
             },
             error: function(xhr, error){

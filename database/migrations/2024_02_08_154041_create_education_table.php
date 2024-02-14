@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('educations', function (Blueprint $table) {
             $table->id();
+            $table->string('state')->default('created');
             $table->string('degree');
             $table->string('institution');
             $table->string('field_of_study');

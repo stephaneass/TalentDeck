@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Livewire\DashboardComponent;
+use App\Livewire\EducationComponent;
 use App\Livewire\LoginComponent;
 use App\Livewire\RegisterComponent;
 use Illuminate\Support\Facades\Route;
@@ -30,5 +31,6 @@ Route::middleware('guest')->group(function(){
 
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard', DashboardComponent::class)->name('dashboard');
+    Route::get('/educations', EducationComponent::class)->name('educations');
 });
 

@@ -6,9 +6,9 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>B-PAY | {{$title?? ""}}</title>
+    <title>TALENTDEK | {{$title?? ""}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="BPAY B-pay pay b transfert recharge withdrawal money cash" name="description" />
+    <meta content="TALENTDEK" name="description" />
     <meta content="Stephane ASSOCLE" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('admin/images/favicon.ico')}}">

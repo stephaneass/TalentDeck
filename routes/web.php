@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Livewire\DashboardComponent;
 use App\Livewire\LoginComponent;
 use App\Livewire\RegisterComponent;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', [LoginController::class, 'login_form'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.check');
-Route::get('/registration', [RegisterController::class, 'register_form'])->name('register');
-Route::post('/registration', [RegisterController::class, 'register'])->name('register.check');
-//Route::get('/login', LoginComponent::class)->name('login');
-//Route::get('/registration', RegisterComponent::class)->name('register');
+Route::middleware('guest')->group(function(){
+    Route::get('/login', [LoginController::class, 'login_form'])->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->name('login.check');
+    Route::get('/registration', [RegisterController::class, 'register_form'])->name('register');
+    Route::post('/registration', [RegisterController::class, 'register'])->name('register.check');
+});
+
+Route::middleware('auth')->group(function(){
+    Route::get('/dashboard', DashboardComponent::class)->name('dashboard');
+});
+

@@ -51,6 +51,26 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function getRoleNameAttribute()
+    {
+        return $this->roles->first()->display_name ?? null;
+    }
+
+    public function getRoleAttribute()
+    {
+        return $this->roles->first()->name ?? null;
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->first_name. " " .$this->last_name;
+    }
+
+    public function getAvatarAttribute()
+    {
+        return asset('admin/images/avatars/default.png') ;
+    }
+    
     static function addNew($data)
     {
         $user = self::create([

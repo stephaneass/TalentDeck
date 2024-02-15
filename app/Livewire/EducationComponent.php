@@ -113,64 +113,44 @@ class EducationComponent extends Component
 
     function edit($id)
     {
-        /* $this->model = Gsm::query()->findOrFail($id);
-        $this->modalTitle = "Modification de GSM";
-        $this->buttonTitle = "Modification";
+        $this->model = Education::query()->findOrFail($id);
+        $this->modalTitle = "Update Education";
+        $this->buttonTitle = "Update";
         $this->buttonAction = "update";
 
         $this->data['degree'] = $this->model->degree;
         $this->data['institution'] = $this->model->institution;
         $this->data['field_of_study'] = $this->model->field_of_study;
-        $this->data['country_id'] = $this->model->country_id;
-        $this->data['aggregator_id'] = $this->model->aggregator_id;
         $this->data['graduation_date'] = $this->model->graduation_date;
-        $this->data['aggregator_recharge_rate'] = $this->model->aggregator_recharge_rate;
-        $this->data['bpay_withdrawal_rate'] = $this->model->bpay_withdrawal_rate;
-        $this->data['aggregator_withdrawal_rate'] = $this->model->aggregator_withdrawal_rate;
-        $this->data['recharge'] = $this->model->recharge;
-        $this->data['withdrawal'] = $this->model->withdrawal;
         
-        $this->emit('showModal'); */
+        $this->dispatch('showModal');
     }
 
     function update()
     {
-        /* $gsm = Gsm::where('institution', $this->data['institution'])
-                    ->where('country_id', $this->data['country_id'])
-                    ->first();
-        if (!blank($gsm) && $gsm->id != $this->model->id) {
-            $this->addError('data.degree', "Ce GSM avec ce institution et ce pays existe déjà. Vous pouvez la modifier ou changer d'agrégateur");
-            return; 
-        }
+        $this->validate();
 
         $this->model->institution = $this->data['institution'];
         $this->model->degree = $this->data['degree'];
         $this->model->field_of_study = $this->data['field_of_study'];
-        $this->model->country_id = $this->data['country_id'];
-        $this->model->aggregator_id = $this->data['aggregator_id'];
         $this->model->graduation_date = $this->data['graduation_date'];
-        $this->model->aggregator_recharge_rate = $this->data['aggregator_recharge_rate'];
-        $this->model->bpay_withdrawal_rate = $this->data['bpay_withdrawal_rate'];
-        $this->model->aggregator_withdrawal_rate = $this->data['aggregator_withdrawal_rate'];
-        $this->model->recharge = $this->data['recharge'];
-        $this->model->withdrawal = $this->data['withdrawal'];
 
         $this->model->save();
         
-        $this->emit('hideAddGSMModal'); */
+        $this->dispatch('hideAddEducationModal');
     }
 
-    public function suspendUser($gsm_id)
+    public function suspendUser($item_id)
     {
-        /* $gsm = Gsm::findOrFail($gsm_id);
+        $education = Education::findOrFail($item_id);
 
-        $gsm->markAsSuspended(); */
+        $education->markAsSuspended();
     }
 
-    public function activateUser($gsm_id)
+    public function activateUser($item_id)
     {
-        /* $gsm = Gsm::findOrFail($gsm_id);
+        $education = Education::findOrFail($item_id);
 
-        $gsm->markAsActif(); */
+        $education->markAsCreated();
     }
 }

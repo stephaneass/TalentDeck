@@ -3,6 +3,8 @@
     <x-breadcrumb title="Educations"/>
     <!-- end page title -->
     @include('modals/educations/add')
+    @include('modals/modals-js/validate')
+    @include('modals/modals-js/reject')
 
     <div class="row">
         <div class="col-xl-12">

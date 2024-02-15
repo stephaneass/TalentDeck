@@ -7,11 +7,11 @@
     <td>{!!$item->formated_state!!}</td>
     <td>
         <!-- Buttons Group -->
-        @if ($item->state == 'actif')
-            <button onclick="showDanger('Suspension de compte', {{$item->id}}, 'Êtes vous sûr de vouloir suspendre ce compte?')"
+        @if ($item->state == 'created')
+            <button onclick="showDanger('Suspension', {{$item->id}}, 'Are you sure you want to suspend this education?')"
                  type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-thumb-down-line"></i></button>
         @else
-            <button onclick="showValidate('Activation de compte', {{$item->id}}, 'Êtes vous sûr de vouloir réactiver ce compte?')"
+            <button onclick="showValidate('Activation', {{$item->id}}, 'Are you sure you want to activate this education?')"
                  type="button" class="btn btn-success btn-icon waves-effect waves-light"><i class="ri-thumb-up-line"></i></button>            
         @endif
         <button class="btn btn-success" wire:click="edit({{$item->id}})"><i class="ri-edit-line align-bottom"></i> </button>

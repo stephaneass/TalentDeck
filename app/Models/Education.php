@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Utils\Traits\HasState;
+use App\Utils\Traits\StateLabel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,4 +26,16 @@ class Education extends Model
                     })
                 ;
     } 
+
+    public function markAsCreated()
+    {
+        $this->state = StateLabel::$CREATED;
+        $this->save();
+    }
+
+    public function markAsSuspended()
+    {
+        $this->state = StateLabel::$SUSPENDED;
+        $this->save();
+    }
 }

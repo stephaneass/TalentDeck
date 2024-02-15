@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Livewire\DashboardComponent;
 use App\Livewire\EducationComponent;
+use App\Livewire\ExperienceComponent;
 use App\Livewire\LanguageComponent;
 use App\Livewire\LoginComponent;
 use App\Livewire\RegisterComponent;
@@ -36,5 +37,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/educations', EducationComponent::class)->name('educations');
     Route::get('/skills', SkillComponent::class)->name('skills');
     Route::get('/languages', LanguageComponent::class)->name('languages');
+    Route::get('/experiences', ExperienceComponent::class)->name('experiences');
 });
 

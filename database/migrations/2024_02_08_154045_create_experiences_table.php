@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
+            $table->string('state')->default('created');
             $table->string('company_name');
             $table->string('job_title');
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->boolean('currently_employed')->default(0);
-            $table->string('description');
+            $table->text('description');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade')->onUpdate('cascade');

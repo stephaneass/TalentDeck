@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use App\Utils\Traits\HasLevel;
 use App\Utils\Traits\HasState;
 use App\Utils\Traits\StateLabel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Skill extends Model
+class Language extends Model
 {
-    use HasFactory, HasState;
+    use HasFactory, HasState, HasLevel;
 
     protected $guarded = [];
 

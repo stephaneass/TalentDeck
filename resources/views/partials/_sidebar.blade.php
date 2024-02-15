@@ -35,6 +35,7 @@
                 <hr>
                 
                 <x-admin.sidebar_menu title="Educations" :route="route('educations')" icon="ri-pantone-line" />
+                <x-admin.sidebar_menu title="Skills" :route="route('skills')" icon=" ri-bar-chart-2-line" />
                 {{-- <x-admin.sidebar_menu title="Utilisateurs" :route="route('admin.users')" icon="ri-team-line" />
                 <x-admin.sidebar_menu title="Opérations" :route="route('admin.operations')" icon="ri-stack-line" />
                 <x-admin.sidebar_menu title="Abonnement" :route="route('admin.memberships')" icon="ri-layout-masonry-line" />

@@ -2,7 +2,7 @@
     <!-- start page title -->
     <x-breadcrumb title="Educations"/>
     <!-- end page title -->
-    @include('modals/educations/add')
+    @include('modals/skills/add')
     @include('modals/modals-js/validate')
     @include('modals/modals-js/reject')
 
@@ -40,14 +40,14 @@
                             <table class="table align-middle table-nowrap table-striped-columns mb-0">
                                 <x-admin.table.header :columns="$this->columns" />
                                 <tbody>
-                                    @foreach ($educations as $item)
-                                        @include('livewire.educations.item')
+                                    @foreach ($items as $item)
+                                        @include('livewire.skills.item')
                                     @endforeach
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-between mt-2">
                                 <div> </div>
-                                <div class="float-right">{{ $educations->links() }}</div>
+                                <div class="float-right">{{ $items->links() }}</div>
                             </div>
                             
                         </div>
@@ -68,8 +68,8 @@
 
     <script src="{{asset('admin/js/pages/select2.init.js')}}"></script>
     <script>
-        Livewire.on('hideAddEducationModal', function(){
-            $('#hideAddEducationButton').trigger('click');
+        Livewire.on('hideAddSkillModal', function(){
+            $('#hideAddSkillButton').trigger('click');
         })
         
         Livewire.on('showModal', function(){

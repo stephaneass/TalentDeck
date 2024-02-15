@@ -6,6 +6,7 @@ use App\Livewire\DashboardComponent;
 use App\Livewire\EducationComponent;
 use App\Livewire\LoginComponent;
 use App\Livewire\RegisterComponent;
+use App\Livewire\SkillComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,5 +33,6 @@ Route::middleware('guest')->group(function(){
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard', DashboardComponent::class)->name('dashboard');
     Route::get('/educations', EducationComponent::class)->name('educations');
+    Route::get('/skills', SkillComponent::class)->name('skills');
 });
 

@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Education;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,6 +22,7 @@ class EducationComponent extends Component
     public $countries = [];
     public $aggregators = [];
     public $modalTitle, $buttonTitle, $buttonAction;
+    public User $user;
 
     protected $rules = [
         "data.degree"=>"required|string",
@@ -42,13 +44,13 @@ class EducationComponent extends Component
 
     function mount()
     {
-        
+        $this->user = Auth::user();
     }
 
     public function render()
     {
         return view('livewire.educations.table',[
-            'educations' => (Education::list($this->search)->paginate(10))
+            'educations' => (Education::list($this->user->id, $this->search)->paginate(10))
         ])
             ->extends('layout', ['title' => "Educations"]);
     }
@@ -104,7 +106,7 @@ class EducationComponent extends Component
             'institution' => $this->data['institution'],
             'field_of_study' => $this->data['field_of_study'],
             'graduation_date' => $this->data['graduation_date'],
-            'user_id' => Auth::id()
+            'user_id' => $this->user->id
         ]);
 
         $this->dispatch('hideAddEducationModal');

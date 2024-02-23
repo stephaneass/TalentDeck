@@ -14,9 +14,12 @@ class Language extends Model
 
     protected $guarded = [];
 
-    public function scopeList($query, $search='')
+    public function scopeList($query, $user_id = null, $search='')
     {
-        return $query->when(!blank($search), function($q) use($search){
+        return $query->when(!blank($user_id), function($q) use ($user_id){
+                        $q->where('user_id', $user_id);
+                    })
+                    ->when(!blank($search), function($q) use($search){
                         $q->where(function($q)use($search){
                             $q->where('name', 'like', "%$search%")
                             ;

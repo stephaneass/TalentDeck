@@ -2,20 +2,32 @@
 
 namespace App\Livewire;
 
+use App\Models\Education;
+use App\Models\Experience;
+use App\Models\Language;
 use App\Models\Operation;
 use App\Models\OperationType;
+use App\Models\Skill;
 use App\Models\Subscription;
 use App\Models\User;
 use App\Utils\StateLabel;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class DashboardComponent extends Component
 {
+    public $user;
+
+    function mount()
+    {
+        $this->user = Auth::user();
+    }
+
     public function render()
     {
         return view('livewire.dashboard.dashboard',
             [
-                
+                'users_dash' => $this->getUserDash()
             ])
             ->extends('layout', ['title' => "Dashboard"]);
     }
@@ -24,70 +36,29 @@ class DashboardComponent extends Component
     {
         return [
             [
-                'title' => 'Utilisateurs Total',
-                'number' => User::role('customer')->count(),
-                'color' => 'primary'
-            ],
-            [
-                'title' => 'Pièces non fournies',
-                'number' => User::role('customer')->whereState(StateLabel::$CREATED)->count(),
-                'color' => 'info'
-            ],
-            [
-                'title' => 'Validation En Attente',
-                'number' => User::role('customer')->whereState(StateLabel::$PENDING)->count(),
-                'color' => 'warning'
-            ],
-            [
-                'title' => 'Utilisateurs Validés',
-                'number' => User::role('customer')->whereState(StateLabel::$VALIDATED)->count(),
-                'color' => 'success'
-            ],
-        ];
-    }
-    
-    function getSubscriptionDash()
-    {
-        return [
-            [
-                'title' => Subscription::$BASIC,
-                'number' => Subscription::usersBySubscription(Subscription::$BASIC)->count(),
-                'color' => 'primary'
-            ],
-            [
-                'title' => Subscription::$STANDARD,
-                'number' => Subscription::usersBySubscription(Subscription::$STANDARD)->count(),
-                'color' => 'info'
-            ],
-            [
-                'title' => Subscription::$BUSINESS,
-                'number' => Subscription::usersBySubscription(Subscription::$BUSINESS)->count(),
-                'color' => 'success'
-            ]
-        ];
-    }
-    
-    function getOperationDash()
-    {
-        return [
-            [
-                'title' => OperationType::$RECHARGE,
-                'number' => Operation::usersByOperations(OperationType::$RECHARGE)->count(),
+                'title' => 'Educations',
+                'number' => Education::list($this->user->id)->where('state', 'created')->count(),
                 'color' => 'primary',
-                'sub_icon' => 'ri-arrow-up-line'
+                'icon' => 'ri-pantone-line'
             ],
             [
-                'title' => OperationType::$TRANSFERT,
-                'number' => Operation::usersByOperations(OperationType::$TRANSFERT)->count(),
+                'title' => 'Experiences',
+                'number' => Experience::list($this->user->id)->where('state', 'created')->count(),
                 'color' => 'info',
-                'sub_icon' => 'ri-arrow-right-line'
+                'icon' => "ri-menu-add-line"
             ],
             [
-                'title' => OperationType::$WITHDRAW,
-                'number' => Operation::usersByOperations(OperationType::$WITHDRAW)->count(),
+                'title' => 'Skills',
+                'number' => Skill::list($this->user->id)->where('state', 'created')->count(),
+                'color' => 'warning',
+                'icon' => "ri-bar-chart-2-line"
+            ],
+            [
+                'title' => 'Languages',
+                'number' => Language::list($this->user->id)->where('state', 'created')->count(),
                 'color' => 'success',
-                'sub_icon' => 'ri-arrow-down-line'
-            ]
+                'icon' => "ri-file-list-3-line"
+            ],
         ];
     }
 }

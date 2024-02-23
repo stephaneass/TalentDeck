@@ -22,19 +22,19 @@
                 <!--end row-->
 
                 <div class="row">
-                    <h4 class="fs-16 mb-1">Utilisateurs</h4>
-                    {{-- @foreach ($users_dash as $item)
-                        <x-admin.dashboard.card :title="$item['title']" :number="$item['number']" :color="$item['color']" /><!-- end col -->
-                    @endforeach --}}
+                    <h4 class="fs-16 mb-1">Statistique</h4>
+                    @foreach ($users_dash as $item)
+                        <x-admin.dashboard.card :title="$item['title']" :number="$item['number']" :color="$item['color']" :icon="$item['icon']" /><!-- end col -->
+                    @endforeach
                 </div>
                 <div class="row">
-                    <h4 class="fs-16 mb-1">Abonnements</h4>
+                    {{-- <h4 class="fs-16 mb-1">Abonnements</h4> --}}
                     {{-- @foreach ($subscriptions_dash as $item)
                         <x-admin.dashboard.card :title="$item['title']" :number="$item['number']" :color="$item['color']" icon='ri-space-ship-line' /><!-- end col -->
                     @endforeach --}}
                 </div>
                 <div class="row">
-                    <h4 class="fs-16 mb-1">Opérations</h4>
+                    {{-- <h4 class="fs-16 mb-1">Opérations</h4> --}}
                     {{-- @foreach ($operations_dash as $item)
                         <x-admin.dashboard.card :title="$item['title']" :number="$item['number']" :color="$item['color']" icon='ri-exchange-dollar-fill'>
                             @slot('sub_icon')

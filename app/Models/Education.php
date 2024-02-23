@@ -14,9 +14,12 @@ class Education extends Model
     protected $guarded = [];
     protected $table = 'educations';
 
-    public function scopeList($query, $search='')
+    public function scopeList($query, $user_id = null, $search='')
     {
-        return $query->when(!blank($search), function($q) use($search){
+        return $query->when(!blank($user_id), function($q) use ($user_id){
+                        $q->where('educations.user_id', $user_id);
+                    })
+                    ->when(!blank($search), function($q) use($search){
                         $q->where(function($q)use($search){
                             $q->where('degree', 'like', "%$search%")
                             ->orWhere('educations.institution', 'like', "%$search%")

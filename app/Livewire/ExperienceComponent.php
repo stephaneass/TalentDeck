@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Experience;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,6 +22,7 @@ class ExperienceComponent extends Component
     public $countries = [];
     public $aggregators = [];
     public $modalTitle, $buttonTitle, $buttonAction;
+    public User $user;
 
     protected $rules = [
         "data.company_name"=>"required|string",
@@ -45,13 +47,13 @@ class ExperienceComponent extends Component
 
     function mount()
     {
-        
+        $this->user = Auth::user();
     }
 
     public function render()
     {
         return view('livewire.experiences.table',[
-            'experiences' => (Experience::list($this->search)->paginate(10))
+            'experiences' => (Experience::list($this->user->id, $this->search)->paginate(10))
         ])
             ->extends('layout', ['title' => "Experiences"]);
     }
@@ -111,7 +113,7 @@ class ExperienceComponent extends Component
             'end_date' => $this->data['end_date']??null,
             'currently_employed' => $this->data['currently_employed'],
             'description' => $this->data['description'],
-            'user_id' => Auth::id()
+            'user_id' => $this->user->id
         ]);
 
         $this->dispatch('hideAddExperienceModal');

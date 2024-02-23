@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Skill;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,6 +22,7 @@ class SkillComponent extends Component
     public $countries = [];
     public $aggregators = [];
     public $modalTitle, $buttonTitle, $buttonAction;
+    public User $user;
 
     protected $rules = [
         "data.name"=>"required|string",
@@ -37,13 +39,13 @@ class SkillComponent extends Component
 
     function mount()
     {
-        
+        $this->user = Auth::user();
     }
 
     public function render()
     {
         return view('livewire.skills.table',[
-            'items' => (Skill::list($this->search)->paginate(10))
+            'items' => (Skill::list($this->user->id, $this->search)->paginate(10))
         ])
             ->extends('layout', ['title' => "Skills"]);
     }
@@ -93,7 +95,7 @@ class SkillComponent extends Component
 
         Skill::create([
             'name' => $this->data['name'],
-            'user_id' => Auth::id()
+            'user_id' => $this->user->id
         ]);
 
         $this->dispatch('hideAddSkillModal');

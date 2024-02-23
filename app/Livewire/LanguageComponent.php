@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Language;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,6 +22,7 @@ class LanguageComponent extends Component
     public $countries = [];
     public $aggregators = [];
     public $modalTitle, $buttonTitle, $buttonAction;
+    public User $user;
 
     protected $rules = [
         "data.name"=>"required|string",
@@ -40,13 +42,13 @@ class LanguageComponent extends Component
 
     function mount()
     {
-        
+        $this->user = Auth::user();
     }
 
     public function render()
     {
         return view('livewire.languages.table',[
-            'items' => (Language::list($this->search)->paginate(10))
+            'items' => (Language::list($this->user->id, $this->search)->paginate(10))
         ])
             ->extends('layout', ['title' => "Languages"]);
     }
@@ -98,7 +100,7 @@ class LanguageComponent extends Component
         Language::create([
             'name' => $this->data['name'],
             'level' => $this->data['level'],
-            'user_id' => Auth::id()
+            'user_id' => $this->user->id
         ]);
 
         $this->dispatch('hideAddLanguageModal');
